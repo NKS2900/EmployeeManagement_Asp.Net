@@ -8,7 +8,7 @@
     border-radius: 12px;
     width: 40%;
     height: 60%;
-    margin-top: 50px;
+    margin-top: 20px;
 }
 
 .logform {
@@ -30,11 +30,12 @@
 }
 
 .container {
+    
 }
 
 .group {
-    display: flex;
-    margin-left: 100px;
+    display: inline-flex;
+    margin-left: 50px;
 }
 
 .loglink {
@@ -46,7 +47,7 @@ input[type=text], input[type=password], input[type=email], textarea, select {
     margin: 11px 0;
     box-sizing: border-box;
     border-radius: 12px;
-    width: 80%;
+    width: 90%;
     border: none;
     margin-right: 10%;
     outline: none;
@@ -58,7 +59,7 @@ label {
     display: flex;
     justify-content: left;
     text-align: right;
-    width: 145px;
+    width: 150px;
     line-height: 60px;
     color: black;
 }
