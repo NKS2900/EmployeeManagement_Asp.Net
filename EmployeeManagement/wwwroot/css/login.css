@@ -3,19 +3,11 @@
     background-image: url('bg2.jpg');
 }
 
-.form {
-    border: 2px solid #f1f1f1;
-    border-radius: 12px;
-    width: 40%;
-    height: 62%;  
-    margin-top:50px;
-}
-
 .logform {
     border: 2px solid #f1f1f1;
     border-radius: 12px;
     width: 45%;
-    height: 55%;
+    height: 60%;
     margin-top: 150px;
 }
 

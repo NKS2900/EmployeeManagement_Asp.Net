@@ -1,20 +1,25 @@
 
-
-var passreg = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[~!@#$%^&*.-])[a-zA-Z0-9].{8,}$/;
-var emailreg =/^[a-zA-Z0-9]+[.(a-zA-Z0-9)]*(\\@)[a-zA-Z0-9]+(\\.)[a-z]{2,4}$/;
-
 function validate() {
 
-    var email = document.getElementById(email).value;
-    var pass = document.getElementById(pass).value;
-    alert(email);
-    if (emailreg.test(email) && passreg.test(pass)) {
-        alert(email);
-        
-        return true;
+    var passreg = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[~!@#$%^&*.-])[a-zA-Z0-9].{8,}$/;
+    var emailreg = /^[a-zA-Z0-9.]{1,}@[a-z]{1,5}[.a-z]{1,5}[.]{1}[a-z]{1,4}$/;
+
+    var testemail = document.getElementById('email').value;
+    var testpass = document.getElementById('pass').value;
+
+    if (testemail.match(emailreg)) {
+
+        if (testpass.match(passreg)) {
+            return true;
+        }
+        else {
+            alert("Invalid Password.");
+            return false;
+        }
     }
     else {
-        alert("invalid input");
+        alert("Invalid email.");
         return false;
     }
-}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+    
+}                                                                                                                                                          

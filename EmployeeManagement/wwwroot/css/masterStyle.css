@@ -3,6 +3,7 @@
     background-image: url('bg2.jpg');  
 }
 
+
 form {
     border: 1px solid #f1f1f1;
     border-radius: 12px;
@@ -10,17 +11,17 @@ form {
     margin-left: 5%;
     margin-right: 5%;
     height: 100%;
+    
 }
 
 .headdiv {
-    padding-left:3%;
+    margin-left:25%;
 }
 
 .menubar {
     display: inline-flex;
-    margin-left: 10%;
+    margin-left: 35%;
     margin-bottom: 5px;
-    
     border-radius: 12px;
 }
 
@@ -37,7 +38,7 @@ form {
 }
     .menubar label:hover {
         opacity: 0.8;
-        background-color: #BFC9CA;
+        background-color: #82E0AA;
     }
 
 #home {
@@ -93,13 +94,13 @@ table {
     padding: 12px 25px;
 }
 
-    tr {
-       border-bottom: 0.5px solid black;
-    }
-
 ​ tr:hover {
     opacity: 0.9;
-    background-color: #AEB6BF;
+    background-color: #82E0AA;
+}
+
+tr {
+    border-bottom: 0.5px solid black;
 }
 
 td {
