@@ -19,7 +19,6 @@ function validate() {
 
 
     if (testfname.match(namereg)) {
-
         if (testlname.match(namereg)) {
             if (testemail.match(emailreg)) {
                 if (testcontact.match(contactreg)) {
@@ -27,8 +26,8 @@ function validate() {
                         if (teststate.match(cityreg)) {
                             if (testpincode.match(pincodereg)) {
                                 if (testpass.match(passreg)) {
-                                    if (testpass==testcpass) {
-                                        return true;
+                                    if (testpass == testcpass) {
+                                        //return true;
                                     }
                                     else {
                                         alert("Password not matched.");
@@ -75,4 +74,38 @@ function validate() {
         return false;
     }
 
+    var script = document.createElement('script');
+    /*script.src = 'https://code.jquery.com/jquery-3.4.1.min.js';*/
+    script.src = 'https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js';
+
+    script.type = 'text/javascript';
+    document.getElementsByTagName('head')[0].appendChild(script);
+
+    var employee = {};
+    employee.FirstName = $("#firstname").val();
+    employee.LastName = $("#lastname").val();
+    employee.Email = $("#email").val();
+    employee.Contact = $("#contact").val();
+    employee.City = $("#city").val();
+    employee.State = $("#state").val();
+    employee.Pincode = $("#pincode").val();
+    employee.Password = $("#password").val();
+    //console.log(JSON.stringify(employee));
+
+    $.ajax({
+        type: "POST",
+        url: "/api/addEmployee",
+        data: JSON.stringify(employee),
+        dataType: "JSON",
+        contentType: "application/json; charset=utf-8",
+        processData: true,
+        success: function () {
+            alert("Data has been added successfully.");
+            return true;
+        },
+        error: function () {
+            alert("Error while inserting data");
+        }
+    });
+    return false;  
 }  

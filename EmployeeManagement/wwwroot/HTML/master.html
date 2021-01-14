@@ -22,11 +22,12 @@
 
         </div>
     </form>
-    
-    <div class="head2"><h2>Employee All Records</h2>
+
+    <div class="head2">
+        <h2>Employee All Records</h2>
     </div>
     <div class="tablediv">
-        <table>
+        <table id="tblEmployee">
             <thead>
                 <tr>
                     <td>ID</td>
@@ -40,45 +41,68 @@
                     <td colspan="2" id="action">Action</td>
                 </tr>
             </thead>
-
-
-            <tr>
-                <td>101</td>
-                <td>NIJAM</td>
-                <td>SAYYAD</td>
-                <td>LATUR</td>
-                <td>MAHARASHTRA</td>
-                <td>145263</td>
-                <td>9130512900</td>
-                <td>NKS@GMIAL.COM</td>
-                <td><a href="master.html"><label id="editlabel">Edit</label></a></td>
-                <td><a href="master.html"><label id="deletlabel">Delete</label></a></td>
-            </tr>
-            <tr>
-                <td>102</td>
-                <td>Dipak</td>
-                <td>Nagargoje</td>
-                <td>Nagadara</td>
-                <td>MAHARASHTRA</td>
-                <td>415263</td>
-                <td>8630512900</td>
-                <td>Dipak@GMIAL.COM</td>
-                <td><a href="master.html"><label id="editlabel">Edit</label></a></td>
-                <td><a href="master.html"><label id="deletlabel">Delete</label></a></td>
-            </tr>
-            <tr>
-                <td>103</td>
-                <td>Imran</td>
-                <td>Shaikh</td>
-                <td>Pune</td>
-                <td>MAHARASHTRA</td>
-                <td>145263</td>
-                <td>7845512900</td>
-                <td>info@GMIAL.COM</td>
-                <td><a href="master.html"><label id="editlabel">Edit</label></a></td>
-                <td><a href="master.html"><label id="deletlabel">Delete</label></a></td>
-            </tr>
+            <tbody></tbody>
         </table>
     </div>
+
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $.ajax({
+
+                url: "/api/get",
+                type: "GET",
+                dataType: 'json',
+                
+                success: function (data) {
+                    var EmployeeRecord = $("#tblEmployee tbody");
+                    $(data).each(function (index, emp) {
+                        EmployeeRecord.append('<tr><td>' + emp.id + '</td><td>' + emp.firstName + '</td><td>' + emp.lastName + '</td><td>' + emp.city + '</td><td>' + emp.state + '</td><td>' + emp.zip
+                            + '</td><td>' + emp.contact + '</td><td>' + emp.email + '<td ><a href= Update.html><label id=editlabel>Edit</label></a></td>' + '<td ><a href= master.html><label id=deletlabel>Delete</label></a></td>');
+                            console.log(emp);
+                    });
+                }
+            });
+        });
+    </script>
+
+
+    <!--<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript">
+
+        $(function () {
+            $("#tblEmployee tbody tr").remove();
+            $.ajax({
+                type: 'GET',
+                url: "/api/get",
+                dataType: 'json',
+                data: { id: '' },
+                success: function (data) {
+                    var items = '';
+                    $.each(data, function (i, item) {
+                        var rows = "<tr>"
+                            + "<td >" + item.Id + "</td>"
+                            + "<td >" + item.FirstName + "</td>"
+                            + "<td >" + item.LastName + "</td>"
+                            + "<td >" + item.City + "</td>"
+                            + "<td >" + item.State + "</td>"
+                            + "<td >" + item.Zip + "</td>"
+                            //+ "<td ><a href=" + master.html + "><label id=editlabel>Edit</label></a></td>"
+                            //+ "<td ><a href=" + master.html + "><label id=deletlabel>Delete</label></a></td>"
+                            + "</tr>";
+                        $('#tblStudent tbody').append(rows);
+                    });
+                },
+                error: function (ex) {
+                    var r = jQuery.parseJSON(response.responseText);
+                    alert("Message: " + r.Message);
+                    alert("StackTrace: " + r.StackTrace);
+                    alert("ExceptionType: " + r.ExceptionType);
+                }
+            });
+            return false;
+        });
+    </script>-->
 </body>
 </html>

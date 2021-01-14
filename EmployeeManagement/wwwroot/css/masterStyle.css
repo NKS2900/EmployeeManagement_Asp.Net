@@ -59,7 +59,7 @@ form {
 }
 
 #action {
-    padding-left: 60px;
+    padding-left: 80px;
 }
 
 #editlabel {
@@ -90,7 +90,7 @@ form {
 table {
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
-    width: 90%;
+    width: 80%;
     padding: 12px 25px;
 }
 
@@ -113,8 +113,7 @@ td {
 thead td{
     background-color: #422E50;
     color: white;
-    text-align:justify;
-    
+    text-align:justify;   
 }
 a {
     text-decoration: none;
