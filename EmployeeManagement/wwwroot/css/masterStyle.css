@@ -1,8 +1,6 @@
 ﻿body {
-    
     background-image: url('bg2.jpg');  
 }
-
 
 form {
     border: 1px solid #f1f1f1;
@@ -10,8 +8,7 @@ form {
     width: 90%;
     margin-left: 5%;
     margin-right: 5%;
-    height: 100%;
-    
+    height: 100%; 
 }
 
 .headdiv {
@@ -63,14 +60,13 @@ form {
 }
 
 #editlabel {
-    
     background-color: #4CAF50;
-    padding: 8px 20px;
+    color: black;
     border-radius: 10px;
-    color: white;
+    padding: 8px 20px;
+    border: none;
     cursor: pointer;
-    
-
+    color: white;
 }
 #editlabel label:hover {
     opacity: 0.8;
@@ -78,10 +74,12 @@ form {
 
 #deletlabel {
     background-color: #ff0000;
-    padding: 8px;
+    color: black;
     border-radius: 10px;
-    color: white;
+    padding: 8px;
+    border: none;
     cursor: pointer;
+    color: white;
 }
 #deletlabel:hover {
     opacity: 0.9;

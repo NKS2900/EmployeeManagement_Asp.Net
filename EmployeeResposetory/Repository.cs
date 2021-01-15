@@ -22,36 +22,41 @@ namespace EmployeeRepository
         }
 
         public string LoginValidation(string Email, string Password)
-        {   
-            var userData = this.employeeContext.EmployeeTable.Where(x => x.Email == Email && x.Password==Password).SingleOrDefault();
+        {
+            var userData = this.employeeContext.EmployeeTable.Where(x => x.Email == Email && x.Password == Password).SingleOrDefault();
             EmployeeModels emp=this.employeeContext.EmployeeTable.Find(userData);
-            if (emp == null)
+            if (userData != null)
             {
                 return "Field";
             }
-            string message = "LOGIN_SUCCESS";
-            return message;
+            else
+            {
+                string message = "LOGIN_SUCCESS";
+                return message;
+            }
         }
 
-        public IEnumerable<EmployeeModels> GetEmployee(string id)
+        public IEnumerable<EmployeeModels> GetEmployee(int id)
         {
             List<EmployeeModels> employees = new List<EmployeeModels>();
             employees = employeeContext.EmployeeTable.ToList();
             return employees;
         }
 
-        public string DeleteEmployee(string  id)
+        public string DeleteEmployee(int id)
         {
-            EmployeeModels employee = employeeContext.EmployeeTable.Find(id);
-            if (employee == null)
+            try
             {
-                return "Not Found.";
+                var login = this.employeeContext.EmployeeTable.Find(id);
+                this.employeeContext.EmployeeTable.Remove(login);
+                this.employeeContext.SaveChangesAsync();
+                return "SUCCESS";
             }
+            catch (Exception e)
+            {
+                throw e;
 
-            employeeContext.EmployeeTable.Remove(employee);
-            employeeContext.SaveChanges();
-
-            return "SUCCESS";
+            }
         }
     }
 }

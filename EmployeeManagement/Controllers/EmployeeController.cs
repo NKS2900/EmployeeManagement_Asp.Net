@@ -48,7 +48,7 @@ namespace EmployeeManagement.Controllers
 
         [HttpGet]
         [Route("api/get")]
-        public IActionResult GetEmployees(string id)
+        public IActionResult GetEmployees(int id)
         {
             try 
             {
@@ -62,8 +62,8 @@ namespace EmployeeManagement.Controllers
         }
 
         [HttpDelete]
-        [Route("api/delete")]
-        public IActionResult DeletePersonalDetails(string id)
+        [Route("api/delete/{id}/")]
+        public IActionResult DeletePersonalDetails([FromRoute]int id)
         {
             var result = this.repository.DeleteEmployee(id);
             if (result.Equals("SUCCESS"))

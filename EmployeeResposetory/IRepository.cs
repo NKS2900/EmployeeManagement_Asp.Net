@@ -10,8 +10,8 @@ namespace EmployeeRepository
     public interface IRepository
     {
         public string CreateEmployee(EmployeeModels employee);
-        public IEnumerable<EmployeeModels> GetEmployee(string id);
+        public IEnumerable<EmployeeModels> GetEmployee(int id);
         public string LoginValidation(string Email, string Password);
-        public string DeleteEmployee(string id);
+        public string DeleteEmployee(int id);
     }
 }
