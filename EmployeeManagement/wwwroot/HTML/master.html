@@ -3,46 +3,108 @@
 <head>
     <meta charset="utf-8" />
     <title>Home</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
     <link rel="stylesheet" href="/css/masterStyle.css" />
+
 </head>
 <body>
-    <form method="post">
-        <div class="headdiv">
-            <h1>EMPLOYEE MANAGEMENT SYSTEM</h1>
+    <div class="topDiv">
+        <div class="headdiv" align="center">
+            <h2>EMPLOYEE MANAGEMENT SYSTEM</h2>
         </div>
         <div class="menubar">
 
-            <a href="master.html"><label id="home">HOME</label></a>
+            <a href="master.html"><label id="home"><b>HOME</b></label></a>
 
-            <a href="ResetPass.html"><label>RESET PASSWORD</label></a>
+            <a href="ResetPass.html"><label><b>RESET PASSWORD</b></label></a>
 
-            <a href="Login.html"><label id="logout">LOGOUT</label></a>
+            <a href="Login.html"><label id="logout"><b>LOGOUT</b></label></a>
 
         </div>
-    </form>
-    <div class="head2">
-        <h2>Employee All Records</h2>
-    </div>
-    <div class="tablediv">
-        <table id="tblEmployee">
-            <thead>
-                <tr>
-                    <td>ID</td>
-                    <td>First Name</td>
-                    <td>Last Name</td>
-                    <td>City</td>
-                    <td>State</td>
-                    <td>Zip</td>
-                    <td>Contact</td>
-                    <td>E-mail</td>
-                    <td colspan="2" id="action">Action</td>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
     </div>
 
+        <div class="head2">
+            <h3>Employee All Records</h3>
+        </div>
+        <div class="tablediv">
+            <table id="tblEmployee">
+                <thead>
+                    <tr>
+                        <td>ID</td>
+                        <td>First Name</td>
+                        <td>Last Name</td>
+                        <td>City</td>
+                        <td>State</td>
+                        <td>Zip</td>
+                        <td>Contact</td>
+                        <td>E-mail</td>
+                        <td colspan="2" id="action">Action</td>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+
+        <!-------------------------------------------------------------->
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalCenterTitle">Upadate Employee Record</h5>
+                        <button type="button" id="closebutton" class="close" data-dismiss="modal" aria-label="Close">
+                         X   
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                                <div class="group">
+                                    <label class="uplabel"><b>First Name</b></label>
+                                    <div class="insidediv"><input type="text" id="firstname" required></div>
+                                </div>
+                                <div class="group">
+                                    <label class="uplabel"><b>Last Name</b></label>
+                                    <div class="insidediv"><input type="text" id="lastname" required></div>
+                                </div>
+                                <div class="group">
+                                    <label class="uplabel"><b>E-mail</b></label>
+                                    <div class="insidediv"><input type="email" id="email" readonly></div>
+                                </div>
+                                <div class="group">
+                                    <label class="uplabel"><b>Contact</b></label>
+                                    <div class="insidediv"><input type="number" id="contact" required></div>
+                                </div>
+                                <div class="group">
+                                    <label class="uplabel"><b>City</b></label>
+                                    <div class="insidediv"><input type="text" id="city" required></div>
+                                </div>
+                                <div class="group">
+                                    <label class="uplabel"><b>State</b></label>
+                                    <div class="insidediv"><input type="text" id="state" required></div>
+                                </div>
+                                <div class="group">
+                                    <label class="uplabel"><b>Pin Code</b></label>
+                                    <div class="insidediv"><input type="number" id="pincode" required></div>
+                                </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-------------------------------------------------------------->
+
+
+    <!--ajax and javascript-->
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
     <script type="text/javascript">
         $(document).ready(function () {
             $.ajax({
@@ -50,27 +112,27 @@
                 url: "/api/get",
                 type: "GET",
                 dataType: 'json',
-
                 success: function (data) {
                     var EmployeeRecord = $("#tblEmployee tbody");
                     $(data).each(function (index, emp) {
                         EmployeeRecord.append('<tr><td>' + emp.id + '</td><td>' + emp.firstName + '</td><td>' + emp.lastName + '</td><td>' + emp.city + '</td><td>' + emp.state + '</td><td>' + emp.zip
-                            + '</td><td>' + emp.contact + '</td><td>' + emp.email + '<td ><a href= Update.html><button id=editlabel onclick=editRow(' + emp.id + ')>Edit</button></a></td>'
+                            + '</td><td>' + emp.contact + '</td><td>' + emp.email + '<td ><button id=editlabel class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">Edit</button></td>'
                             + '<td><button id=deletlabel onclick=myfunction(' + emp.id + ')>Delete</button></td>');
 
                     });
-                }
+                } 
             });
         });
 
         function myfunction(id) {
-
+            confirm("Aru you sure to delete record.");
             $.ajax({
                 type: "DELETE",
                 url: "/api/delete/" + id,
                 data: { 'id': id },
                 processData: true,
                 success: function (data) {
+
                     alert("Record_deleted_successfully.")
                     window.location.reload();
                     return true;
@@ -78,9 +140,47 @@
                 error: function () {
                     alert("Error while deleting employeedata");
                 }
-
             });
         }
+
+        ///popup form
+        //$(document).ready(function () {
+        //    document.getElementById("editlabel").addEventListener("click", function () {
+        //        var mybox = document.getElementById("container");
+        //        if (mybox.style.display == "none") {
+        //            mybox.style.display = "block";
+        //        }
+        //        else {
+        //            popup.style.display = "none";
+        //        }
+        //    });
+        //});
+        ///Update Record
+        function editRow(id) {
+            var PersonalDetails = {
+                "firstName": $("#firstName").val(),
+                "lastName": $("#lastName").val(),
+                "city": $("#city").val(),
+                "state": $("#state").val(),
+                "zip": $("#zip").val(),
+                "email": $("#email").val(),
+                "mobile": $("#mobile").val(),
+
+            };
+            $.ajax({
+                type: "PUT",
+                url: '/api/updateRecord["id"]',
+                data: JSON.stringify(PersonalDetails),
+                contentType: "application/json;charset=utf-8",
+                success: function (data, status, valeus) {
+                    alert("The result is : " + status + ": " + data);
+                },
+                error: function (valeus) {
+                    alert(xhr.responseText);
+                }
+            });
+        }
+
     </script>
 </body>
 </html>

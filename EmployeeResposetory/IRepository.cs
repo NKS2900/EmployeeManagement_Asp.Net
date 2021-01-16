@@ -9,9 +9,9 @@ namespace EmployeeRepository
 {
     public interface IRepository
     {
-        public string CreateEmployee(EmployeeModels employee);
+        public bool CreateEmployee(EmployeeModels employee);
         public IEnumerable<EmployeeModels> GetEmployee(int id);
-        public string LoginValidation(string Email, string Password);
+        public bool LoginValidation(string Email, string Password);
         public string DeleteEmployee(int id);
     }
 }

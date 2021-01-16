@@ -20,10 +20,10 @@ namespace EmployeeManagement.Controllers
         [Route("api/addEmployee")]
         public IActionResult AddEmployee([FromBody]EmployeeModels employee)
         {
-            var result = repository.CreateEmployee(employee);
-            if (result.Equals("SUCCESS"))
+            bool result = repository.CreateEmployee(employee);
+            if (result)
             {
-                return Ok(result);
+                return this.Ok(new { success = true, Message = "Record added successfully", Data = result });
             }
             else
             { 
@@ -35,10 +35,10 @@ namespace EmployeeManagement.Controllers
         [Route("api/loginEmployee")]
         public IActionResult LoginEmployee(string Email, string Password)
         {
-            var result = this.repository.LoginValidation(Email, Password);
-            if (result.Equals("LOGIN_SUCCESS"))
+            bool result = this.repository.LoginValidation(Email, Password);
+            if (result)
             {
-                return this.Ok(result);
+                return this.Ok(new { success = true, Message = "Login successfully", Data = result });
             }
             else
             {

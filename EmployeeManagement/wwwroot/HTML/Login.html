@@ -56,7 +56,6 @@
                 }
 
                 var employee = {};
-
                 employee.Email = $("#email").val();
                 employee.Password = $("#password").val();
                 console.log(JSON.stringify(employee));
@@ -71,6 +70,7 @@
                     success: function () {
                         alert("Login successfully.");
                         window.location.href = "https://localhost:44355/HTML/master.html"
+
                         return true;
                     },
                     error: function () {

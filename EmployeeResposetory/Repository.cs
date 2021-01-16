@@ -13,26 +13,31 @@ namespace EmployeeRepository
         {
             this.employeeContext = employeeContext;
         }
-        public string CreateEmployee(EmployeeModels employee)
+        public bool CreateEmployee(EmployeeModels employee)
         {
             employeeContext.EmployeeTable.Add(employee);
-            employeeContext.SaveChanges();
-            string message = "SUCCESS";
-            return message;
+            var emp=employeeContext.SaveChanges();
+            if (emp > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
-        public string LoginValidation(string Email, string Password)
+        public bool LoginValidation(string Email, string Password)
         {
             var userData = this.employeeContext.EmployeeTable.Where(x => x.Email == Email && x.Password == Password).SingleOrDefault();
             EmployeeModels emp=this.employeeContext.EmployeeTable.Find(userData);
             if (userData != null)
             {
-                return "Field";
+                return false;
             }
             else
             {
-                string message = "LOGIN_SUCCESS";
-                return message;
+                return true;
             }
         }
 
@@ -52,11 +57,18 @@ namespace EmployeeRepository
                 this.employeeContext.SaveChangesAsync();
                 return "SUCCESS";
             }
-            catch (Exception e)
+            catch (NullReferenceException e)
             {
                 throw e;
-
             }
         }
+
+        //public IEnumerable<EmployeeModels> GetEmployeeById(int id)
+        //{
+        //    EmployeeModels emp = new EmployeeModels();
+        //    emp.Id = id;
+            
+           
+        //}
     }
 }
