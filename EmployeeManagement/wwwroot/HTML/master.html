@@ -169,7 +169,35 @@
             });
         }
 
-        
+        function updateEmp() {
+            var employee = {};
+            employee.Id = $("#id").val();
+            employee.FirstName = $("#firstname").val();
+            employee.LastName = $("#lastname").val();
+            employee.Contact = $("#contact").val();
+            employee.City = $("#city").val();
+            employee.Email = $("#email").val();
+            employee.State = $("#state").val();
+            employee.Zip = $("#pincode").val();
+            employee.password = $("#password").val();
+            console.log(JSON.stringify(employee));
+
+            $.ajax({
+                type: "PUT",
+                url: "/api/update",
+                data: JSON.stringify(employee),
+                dataType: "",
+                contentType: "application/json; charset=utf-8",
+                processData: true,
+                success: function () {
+                    alert("Record Updated successfully.");
+                    window.location.reload();
+                },
+                error: function () {
+                    alert("Error while Updating...");
+                }
+            });
+        }
     </script>
 </body>
 </html>

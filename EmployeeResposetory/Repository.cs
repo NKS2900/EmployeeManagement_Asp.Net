@@ -70,6 +70,18 @@ namespace EmployeeRepository
             return employ;
         }
 
-        
+        public string UpdateEmployee(EmployeeModels employeeModel)
+        {
+            try
+            {
+                this.employeeContext.EmployeeTable.Update(employeeModel);
+                this.employeeContext.SaveChangesAsync();
+                return "SUCCESS";
+            }
+            catch (NullReferenceException e)
+            {
+                throw e;
+            }
+        }
     }
 }

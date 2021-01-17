@@ -90,5 +90,20 @@ namespace EmployeeManagement.Controllers
                 return this.BadRequest(e.Message);
             }
         }
+
+        [HttpPut]
+        [Route("api/update")]
+        public IActionResult UpdateEmployee(EmployeeModels employee)
+        {
+            var result = this.repository.UpdateEmployee(employee);
+            if (result.Equals("SUCCESS"))
+            {
+                return this.Ok(new { success = true, Message = "Record Updated successfully", Data = result });
+            }
+            else
+            {
+                return this.BadRequest();
+            }
+        }
     }
 }
