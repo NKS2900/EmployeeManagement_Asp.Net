@@ -13,5 +13,7 @@ namespace EmployeeRepository
         public IEnumerable<EmployeeModels> GetEmployee(int id);
         public bool LoginValidation(string Email, string Password);
         public string DeleteEmployee(int id);
+        public IEnumerable<EmployeeModels> GetEmployeeById(int id);
+        public string UpdateEmployee(EmployeeModels employeeModel);
     }
 }

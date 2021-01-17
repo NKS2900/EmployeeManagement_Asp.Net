@@ -63,12 +63,13 @@ namespace EmployeeRepository
             }
         }
 
-        //public IEnumerable<EmployeeModels> GetEmployeeById(int id)
-        //{
-        //    EmployeeModels emp = new EmployeeModels();
-        //    emp.Id = id;
-            
-           
-        //}
+        public IEnumerable<EmployeeModels> GetEmployeeById(int id)
+        {
+            List<EmployeeModels> employ = new List<EmployeeModels>();
+            employ.Add(employeeContext.EmployeeTable.Find(id));
+            return employ;
+        }
+
+        
     }
 }

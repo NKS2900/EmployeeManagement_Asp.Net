@@ -75,5 +75,20 @@ namespace EmployeeManagement.Controllers
                 return this.BadRequest();
             }
         }
+
+        [HttpGet]
+        [Route("api/getById/{id}/")]
+        public IActionResult GetEmployeeByIds(int id)
+        {
+            try
+            {
+                IEnumerable<EmployeeModels> list = this.repository.GetEmployeeById(id);
+                return this.Ok(list);
+            }
+            catch (Exception e)
+            {
+                return this.BadRequest(e.Message);
+            }
+        }
     }
 }
