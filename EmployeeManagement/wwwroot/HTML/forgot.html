@@ -2,34 +2,69 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>emp.login</title>
-    <link rel="stylesheet" href="/css/login.css" />
+    <title>ForgotPassword</title>
+    <link rel="stylesheet" href="/css/forgotStyle.css" />
 </head>
-
 <body>
     <center>
-        
-
         <form class="logform">
             <h2>EMPLOYEE MANAGEMENT</h2>
             <h2>Recover Password</h2>
             <div class="parent">
                 <div>
-                    <input type="email" placeholder="Enter Emil-ID" required>
+                    <input type="email" id="email" placeholder="Enter Emil-ID" required>
                 </div>
                 <div>
-                    <button type="submit"><b>Submit</b></button>
+                    <button type="button" id="btnSend"><b>Submit</b></button>
                 </div>
                 <div class="loglink">
                     <div>
                         <a href="Login.html">Login</a>
                     </div>
                     <div>
-                        <a style="padding-left:105px" href="register.html">Registration</a>
+                        <a style="padding-left:100px" href="register.html">Registration</a>
                     </div>
                 </div>
             </div>
         </form>
     </center>
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript">
+
+        $(function () {
+            $("#btnSend").click(function () {
+       
+                var emailreg = /^[a-zA-Z0-9.]{1,}@[a-z]{1,5}[.a-z]{1,5}[.]{1}[a-z]{1,4}$/;
+
+                var Email = $("#email").val();
+
+                if (Email.match(emailreg)) {
+                }
+                else {
+                    alert("Invalid email.");
+                    return false;
+                }
+                console.log("Tyeped E-mail: " + Email);
+
+                $.ajax({
+                    type: "GET",
+                    url: "/api/sendEmail/" + Email,
+                    dataType: "",
+                    contentType: "application/json; charset=utf-8",
+                    processData: true,
+
+                    success: function () {
+                        alert("Password Send successfully.");
+                        window.location.href = "https://localhost:44355/HTML/Login.html"
+                        return true;
+                    },
+                    error: function () {
+                        alert("Error While Send Email..");
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>

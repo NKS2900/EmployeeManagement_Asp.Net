@@ -14,21 +14,70 @@
 
                 <div class="group">
                     <label><b>Old Password</b></label>
-                    <div class="insidediv"><input type="password" required></div>
+                    <div class="insidediv"><input type="password" id="oldPass" required></div>
                 </div>
                 <div class="group">
                     <label><b>New Password</b></label>
-                    <div class="insidediv"><input type="password" required></div>
+                    <div class="insidediv"><input type="password" id="newPass" required></div>
                 </div>
                 <div class="group">
                     <label><b>Confirm Password</b></label>
-                    <div class="insidediv"><input type="password" required></div>
+                    <div class="insidediv"><input type="password" id="cpass" required></div>
                 </div>
                 <div>
-                    <button type="submit"><b>Submit</b></button>
+                    <button type="button" id="btnSave"><b>Submit</b></button>
                 </div>
             </div>
         </form>
     </center>
+
+    <!--ajax and javascript-->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript">
+
+        $(function () {
+            $("#btnSave").click(function () {
+
+                var passreg = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[~!@#$%^&*.-])[a-zA-Z0-9].{8,}$/;
+
+                var OldPass = $("#oldPass").val();
+                var NewPass = $("#newPass").val();
+                var Cpass = $("#cpass").val();
+                if (OldPass.match(passreg)) {
+                    if (NewPass == Cpass) {
+                        //return true;
+                    }
+                    else {
+                        alert("Password not matched.");
+                        return false;
+                    }
+                }
+                else {
+                    alert("Invalid Password.");
+                    return false;
+                }
+                console.log(OldPass + "  " + NewPass);
+
+                $.ajax({
+                    type: "PUT",
+                    url: "/api/reset/" + OldPass + "/" + NewPass,
+                    dataType: "",
+                    contentType: "application/json; charset=utf-8",
+                    processData: true,
+
+                    success: function () {
+                        alert("Password Updated successfully.");
+                        window.location.href = "https://localhost:44355/HTML/master.html"
+                        return true;
+                    },
+                    error: function () {
+                        alert("Error While ResetPassword");
+                    }
+                });
+            });
+        });
+
+    </script>
+
 </body>
 </html>

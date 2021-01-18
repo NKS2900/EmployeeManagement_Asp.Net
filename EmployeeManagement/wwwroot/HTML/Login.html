@@ -55,22 +55,18 @@
                     return false;
                 }
 
-                var employee = {};
-                employee.Email = $("#email").val();
-                employee.Password = $("#password").val();
-                console.log(JSON.stringify(employee));
+                Email = $("#email").val();
+                Password = $("#password").val();
 
                 $.ajax({
                     type: "POST",
-                    url: "/api/loginEmployee",
-                    data: JSON.stringify(employee),
+                    url: "/api/loginEmployee/" + Email + "/" + Password,
                     dataType: "",
                     contentType: "application/json; charset=utf-8",
                     processData: true,
                     success: function () {
                         alert("Login successfully.");
                         window.location.href = "https://localhost:44355/HTML/master.html"
-
                         return true;
                     },
                     error: function () {

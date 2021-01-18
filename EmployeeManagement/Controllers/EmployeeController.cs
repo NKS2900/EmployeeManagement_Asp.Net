@@ -2,14 +2,15 @@
 using EmployeeRepository;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections;
 using System.Collections.Generic;
+
 
 namespace EmployeeManagement.Controllers
 {
     [ApiController]
     public class EmployeeController : Controller
     {
+        
         private readonly IRepository repository;
         public EmployeeController(IRepository repository)
         {
@@ -32,7 +33,7 @@ namespace EmployeeManagement.Controllers
         }
 
         [HttpPost]
-        [Route("api/loginEmployee")]
+        [Route("api/loginEmployee/{Email}/{Password}/")]
         public IActionResult LoginEmployee(string Email, string Password)
         {
             bool result = this.repository.LoginValidation(Email, Password);
@@ -99,6 +100,37 @@ namespace EmployeeManagement.Controllers
             if (result.Equals("SUCCESS"))
             {
                 return this.Ok(new { success = true, Message = "Record Updated successfully", Data = result });
+            }
+            else
+            {
+                return this.BadRequest();
+            }
+        }
+
+        [HttpPut]
+        [Route("api/reset/{oldpass}/{newpass}/")]
+        public IActionResult ResetPasswords([FromRoute] string oldpass, string newpass)
+        {
+            var result = this.repository.ResetPassword(oldpass, newpass);
+            if (result.Equals("SUCCESS"))
+            {
+                return this.Ok(new { success = true, Message = "Password Updated successfully", Data = result });
+            }
+            else
+            {
+                return this.BadRequest();
+            }
+        }
+
+
+        [HttpGet]
+        [Route("api/sendEmail/{emailAddress}/")]
+        public IActionResult ResetPasswords([FromRoute] string emailAddress)
+        {
+            var result = this.repository.SendEmail(emailAddress);
+            if (result.Equals("SUCCESS"))
+            {
+                return this.Ok(new { success = true, Message = "Password Updated successfully", Data = result });
             }
             else
             {
