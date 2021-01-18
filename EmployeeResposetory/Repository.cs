@@ -126,7 +126,7 @@ namespace EmployeeRepository
                 SmtpClient smtp = new SmtpClient();
                 smtp.Host = "smtp.gmail.com";
                 smtp.EnableSsl = true;
-                NetworkCredential NetworkCred = new NetworkCredential("nijamsayyad95@gmail.com", "nijam@13495");
+                NetworkCredential NetworkCred = new NetworkCredential("example@gmail.com", "Pass@123");
                 smtp.UseDefaultCredentials = true;
                 smtp.Credentials = NetworkCred;
                 smtp.Port = 587;
